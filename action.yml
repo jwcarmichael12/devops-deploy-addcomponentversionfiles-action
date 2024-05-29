@@ -1,0 +1,55 @@
+name: 'Add files to an existing DevOps Deploy component version'
+description: 'Add files to an existing DevOps Deploy component version'
+branding:
+  icon: 'arrow-up-right'
+  color: 'purple'
+inputs:
+  component:
+    description: 'Name/ID of the component (Only required if not using version ID)'
+    required: false
+  versionname:
+    description: 'Name/ID of the version'
+    required: true
+  base:
+    description: 'Local base directory containing files to upload'
+    required: true
+  offset:
+    description: 'Target path offset (the directory in the version files to which these files should be added)'
+    required: false
+  include:
+    description: 'An include file pattern for selecting files to add (may be repeated)'
+    required: false
+  exclude:
+    description: 'An exclude file pattern for excluding files (may be repeated). Overrides includes.'
+    required: false
+  saveExecuteBits:
+    description: 'Saves execute bits for files.'
+    required: true
+    type: boolean
+    default: false
+  hostname:
+    description: 'DevOps Deploy hostname'
+    required: true
+  port:
+    description: 'port'
+    required: true
+    default: '8443'
+  username:
+    description: 'username'
+    required: false
+  password:
+    description: 'password'
+    required: false
+    secret: true
+  authToken:
+    description: 'DevOps Deploy authentication token'
+    required: false
+    secret: true
+  disableSSLVerification:
+    description: 'skip SSL certificate validation when making HTTPS requests and this is discouraged'
+    required: true
+    type: boolean
+    default: false
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
